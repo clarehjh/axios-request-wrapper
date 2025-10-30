@@ -1,28 +1,32 @@
-# HRequest
+# HRequest <img src="https://img.shields.io/npm/v/@your-scope/h-request.svg?style=flat-square" alt="npm version"/>
 
 [English](#en) | [简体中文](#zh)
 
-## <span id="zh">中文介绍</span>
-这是一个基于axios的增强型HTTP请求库，拥有可插拔的加密/签名适配器，支持自动重试、日志记录，并可灵活拓展。非常适用于对数据传输安全性、自动化错误处理和易用性有较高要求的前端与Node.js项目。
+---
+
+## <span id="zh">✨ 中文简介</span>
+
+HRequest 是一个基于 axios 的增强型 HTTP 请求库，支持可插拔的加密、签名适配器，自动重试与日志记录功能，适合高安全性要求的前端与 Node.js 项目。
 
 ---
 
-## <span id="en">English Introduction</span>
-Pluggable axios wrapper with crypto/signature adapters, retries and logging.
-Suitable for frontend/Node.js scenarios which need enhanced data security,
-automated error handling, and flexible extension.
+## <span id="en">✨ English Introduction</span>
+
+HRequest is a pluggable axios wrapper with adapters for crypto/signatures, built-in retries & logging. Suitable for advanced frontend / Node.js security scenarios.
 
 ---
 
-Install
+## 📦 安装 / Install
 
-```
+```bash
 npm i @your-scope/h-request axios
 ```
 
-Quick Start
+---
 
-```
+## 🚀 快速开始 / Quick Start
+
+```typescript
 import { HRequest } from '@your-scope/h-request';
 
 const cryptoAdapter = {
@@ -50,16 +54,8 @@ const http = new HRequest({
   baseURL: '/api',
   cryptoAdapter,
   signatureAdapter,
-  loggerAdapter: {
-    onRequestStart: (cfg) => {},
-    onResponse: (res, ms) => {},
-    onError: (err, ms) => {},
-  },
-  retry: {
-    retries: 2,
-    retryDelayMs: (attempt) => 200 * 2 ** (attempt - 1),
-  },
-  normalizeError: (e) => ({ message: e.message, status: e?.response?.status }),
+  retry: { retries: 2, retryDelayMs: (a) => 200 * 2 ** (a - 1) },
+  // ...other options
 });
 
 // Use generics <TResponse, TRequest>
@@ -69,39 +65,31 @@ const res = await http.post<{ ok: boolean }, { name: string }>(
 );
 ```
 
-Skip encrypt/sign per request
+更多用法见 [examples/global.ts](./examples/global.ts)
 
-```
-http.post('/no-encrypt', { a: 1 }, { headers: { 'X-Skip-Encrypt': 'true' } });
-http.post('/no-sign', { a: 1 }, { headers: { 'X-Skip-Signature': 'true' } });
-```
+---
 
-API
+## 🧩 API/类型 Type Reference
 
-- class HRequest(config)
+| 名称              | 说明                                    |
+|------------------|-----------------------------------------|
+| `HRequest`         | 主类：HTTP 调用入口                    |
+| `CryptoAdapter`    | 插件接口：加密适配                     |
+| `SignatureAdapter` | 插件接口：签名适配                     |
+| `LoggerAdapter`    | 插件接口：日志适配                     |
+| `RetryOptions`     | 配置项：重试机制参数                   |
+| ...              | ...                                     |
 
-  - cryptoAdapter: CryptoAdapter | CryptoAdapter[]
-  - signatureAdapter: SignatureAdapter | SignatureAdapter[]
-  - loggerAdapter?: LoggerAdapter
-  - retry?: RetryOptions
-  - normalizeError?: (error) => any
+更详细类型定义请见 [src/index.ts](./src/index.ts)
 
-- request<TResponse, TRequest>(config)
-- get<TResponse>(url, params?, config?)
-- post<TResponse, TRequest>(url, body?, config?)
-- put<TResponse, TRequest>(url, body?, config?)
-- delete<TResponse>(url, params?, config?)
-- download(url, params?, config?): Promise<BlobPart>
+---
 
-Types
+## ❓ 常见问题 / FAQ
+- [如何按需跳过加密或签名？](#skip-encryptsign-per-request)
+- [如何扩展适配器？](#api)
+- 更多请查看示例与源码注释。
 
-- CryptoAdapter
-- SignatureAdapter
-- LoggerAdapter
-- RetryOptions
-- newRequestConfig
-- Result / ResultData
+---
 
-License
-
+## 📝 License
 MIT
