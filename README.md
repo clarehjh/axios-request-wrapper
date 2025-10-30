@@ -1,16 +1,16 @@
-# HRequest <img src="https://img.shields.io/npm/v/@your-scope/h-request.svg?style=flat-square" alt="npm version"/>
 
-[English](#en) | [简体中文](#zh)
+[English](#english-introduction) | [简体中文](#中文介绍-1)
 
 ---
 
-## <span id="zh">✨ 中文简介</span>
+<a id="中文介绍-1"></a>
+## 中文介绍
 
 HRequest 是一个基于 axios 的增强型 HTTP 请求库，支持可插拔的加密、签名适配器，自动重试与日志记录功能，适合高安全性要求的前端与 Node.js 项目。
 
 ---
-
-## <span id="en">✨ English Introduction</span>
+<a id="english-introduction"></a>  
+## English Introduction
 
 HRequest is a pluggable axios wrapper with adapters for crypto/signatures, built-in retries & logging. Suitable for advanced frontend / Node.js security scenarios.
 
@@ -19,7 +19,7 @@ HRequest is a pluggable axios wrapper with adapters for crypto/signatures, built
 ## 📦 安装 / Install
 
 ```bash
-npm i @your-scope/h-request axios
+npm i axios-request-wrapper
 ```
 
 ---
@@ -27,7 +27,7 @@ npm i @your-scope/h-request axios
 ## 🚀 快速开始 / Quick Start
 
 ```typescript
-import { HRequest } from "@your-scope/h-request";
+import { HRequest } from "axios-request-wrapper";
 
 const cryptoAdapter = {
   provideStaticHeaders: () => ({ "X-System-Id": "1001", version: "1.0.0" }),
@@ -90,20 +90,13 @@ const res = await http.post<{ ok: boolean }, { name: string }>("/demo", {
 
 ---
 
-> 所有类型均遵循类型补全/智能提示，便于 TS/JS 开发体验。
-
----
 
 ## 📝 许可证
 
 MIT License
 
+
 ## 🤝 贡献
-
-欢迎提交 Issue 和 Pull Request！
-
-## 📧 支持
-
-如有问题，请创建 Issue 或联系维护者。
-
+欢迎提交 Issue 和 PR！
 ---
+Made with ❤️ by [clarehjh](https://github.com/clarehjh)
