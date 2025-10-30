@@ -1,27 +1,20 @@
 
-[English](#english-introduction) | [简体中文](#中文介绍-1)
-
----
-
-<a id="中文介绍-1"></a>
-## 中文介绍
 
 HRequest 是一个基于 axios 的增强型 HTTP 请求库，支持可插拔的加密、签名适配器，自动重试与日志记录功能，适合高安全性要求的前端与 Node.js 项目。
 
 ---
-<a id="english-introduction"></a>  
-## English Introduction
 
-HRequest is a pluggable axios wrapper with adapters for crypto/signatures, built-in retries & logging. Suitable for advanced frontend / Node.js security scenarios.
 
----
 
-## 📦 安装 / Install
+## 📦 安装
 
 ```bash
-npm i axios-request-wrapper
+pnpm add axios-request-wrapper
+# 或
+npm install axios-request-wrapper
+# 或
+yarn add axios-request-wrapper
 ```
-
 ---
 
 ## 🚀 快速开始 / Quick Start
