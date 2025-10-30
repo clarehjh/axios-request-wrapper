@@ -1,0 +1,19 @@
+# Node
+node_modules/
+npm-debug.log*
+pnpm-debug.log*
+
+# Build output
+dist/
+build/
+coverage/
+
+# TypeScript
+*.tsbuildinfo
+
+# IDE config
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
